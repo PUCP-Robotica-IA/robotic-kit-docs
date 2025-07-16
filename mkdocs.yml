@@ -43,15 +43,6 @@ nav:
 
 plugins:
   - search
-  - mkdocstrings:
-      handlers:
-        python:
-          setup_commands:
-            - import sys
-            - sys.path.append('.')
-          options:
-            show_source: false # <-- CORREGIDO
-
 
 markdown_extensions:
   - admonition
