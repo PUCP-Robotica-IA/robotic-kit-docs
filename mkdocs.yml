@@ -35,6 +35,7 @@ nav:
     - 'Robot': 'robot/robot.md'
   - 'Sensores':
     - 'sensor': 'sensors/sensor.md'
+    - 'ultrasonido': 'sensors/ultrasonico.md'
   - 'Pruebas':
     - 'prueba1': 'test/test.md'
   - 'Códigos útiles':
