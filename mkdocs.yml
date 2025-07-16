@@ -50,7 +50,7 @@ plugins:
             - import sys
             - sys.path.append('.')
           options:
-            show_source: no
+            show_source: false # <-- CORREGIDO
 
 
 markdown_extensions:
