@@ -1,0 +1,68 @@
+
+
+site_name: Software Pico - 1MTR53
+site_author: Equipo 1MTR53
+
+
+repo_url: https://github.com/PUCP-Robotica-IA/Software_Pico 
+repo_name: Ver en GitHub
+edit_uri: edit/main/docs/ 
+
+
+theme:
+  name: readthedocs
+  
+  locale: es
+
+  navigation_depth: 4
+  collapse_navigation: false 
+  sticky_navigation: true
+  
+  highlightjs: true
+  hljs_languages:
+    - python
+    - yaml
+    - markdown
+
+nav:
+  - 'Introducción': 'index.md'
+  - 'Guía de instalación':
+    - 'Micropython' : 'guides/micropython_guide.md'
+    - 'Thony' : 'guides/thony_guide.md'
+  - 'Configuración': 
+    - 'Configuración de pines': 'configure/configure.md'
+  - 'Robot': 
+    - 'Robot': 'robot/robot.md'
+  - 'Sensores':
+    - 'sensor': 'sensors/sensor.md'
+  - 'Pruebas':
+    - 'prueba1': 'test/test.md'
+  - 'Códigos útiles':
+    - 'utilidad': 'utils/util.md'
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append('.')
+          options:
+            show_source: no
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  
+
+
