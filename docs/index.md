@@ -1,4 +1,4 @@
-# Firmware Educativo para Kits Robóticos – PUCP
+# Firmware educativo para Kits Robóticos – PUCP
 
 ![MicroPython](https://img.shields.io/badge/MicroPython-1.20-blue.svg)
 ![Raspberry Pi Pico W](https://img.shields.io/badge/Raspberry%20Pi-Pico%20W-cc0000.svg)
@@ -19,7 +19,7 @@ Desarrollar una plataforma de firmware modular y educativa que permita a los est
 
 ---
 
-## Plataformas Soportadas
+## Plataformas soportadas
 
 - Robot con ruedas mecanum
 - Brazos robóticos
@@ -51,11 +51,11 @@ Software_Pico/
 
 ---
 
-## Inicio rápido: Cómo Usar el Firmware
+## Inicio rápido: Cómo usar el firmware
 
-### 1. Flashear el Raspberry Pi Pico W
+### 1. Flashear el raspberry pi pico W
 
-Sigue las instrucciones del archivo `docs/guia_instalacion.md` para instalar MicroPython y cargar los archivos necesarios.
+Sigue las instrucciones del archivo **[guía de instalación](guides/micropython_guide.md)** para instalar MicroPython y cargar los archivos necesarios.
 
 ### 2. Configurar tu robot
 
