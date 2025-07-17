@@ -47,13 +47,13 @@
     <ul>
     <li class="toctree-l2"><a class="reference internal" href="../..#objetivos-del-proyecto">Objetivos del proyecto</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="../..#plataformas-soportadas">Plataformas Soportadas</a>
+    <li class="toctree-l2"><a class="reference internal" href="../..#plataformas-soportadas">Plataformas soportadas</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="../..#estructura-del-repositorio">Estructura del repositorio</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="../..#inicio-rapido-como-usar-el-firmware">Inicio rápido: Cómo Usar el Firmware</a>
+    <li class="toctree-l2"><a class="reference internal" href="../..#inicio-rapido-como-usar-el-firmware">Inicio rápido: Cómo usar el firmware</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="../..#1-flashear-el-raspberry-pi-pico-w">1. Flashear el Raspberry Pi Pico W</a>
+    <li class="toctree-l3"><a class="reference internal" href="../..#1-flashear-el-raspberry-pi-pico-w">1. Flashear el raspberry pi pico W</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="../..#2-configurar-tu-robot">2. Configurar tu robot</a>
     </li>
@@ -78,17 +78,25 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Micropython</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#paso-1-descargar-el-firmware">Paso 1: Descargar el Firmware</a>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-1-descargar-el-firmware">Paso 1: Descargar el firmware</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el Firmware en la Placa</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#paso-3-subir-los-archivos-del-curso">Paso 3: Subir los Archivos del Curso</a>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el firmware en la placa</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#listo">¡Listo!</a>
     </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../thony_guide/">Thony</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../thony_guide/#paso-1-instalar-el-editor-thonny">Paso 1: Instalar el editor Thonny</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../thony_guide/#paso-2-conectar-la-placa-a-thonny">Paso 2: Conectar la placa a Thonny</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../thony_guide/#paso-3-codigo-de-prueba-led-intermitente">Paso 3: Código de prueba (LED intermitente)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../thony_guide/#paso-4-opcional-pero-recomendado-guardar-el-codigo-en-la-placa">Paso 4 (Opcional pero recomendado): Guardar el código en la placa</a>
+    </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Configuración</span></p>
@@ -157,7 +165,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="guia-de-instalacion-del-firmware">Guía de Instalación del Firmware</h1>
+                <h1 id="guia-de-instalacion-del-firmware">Guía de instalación del firmware</h1>
 <p>Sigue estos tres pasos para preparar tu placa <strong>Raspberry Pi Pico W</strong> para el laboratorio.</p>
 <div class="admonition note">
 <p class="admonition-title">Requisitos</p>
@@ -168,50 +176,38 @@
 </ul>
 </div>
 <hr />
-<h3 id="paso-1-descargar-el-firmware">Paso 1: Descargar el Firmware</h3>
-<p>Primero, obtén el archivo de firmware oficial de MicroPython, descargar la última versión del firmware.</p>
-<p><a href="https://www.micropython.org/download/RPI_PICO_W/"> <strong>Firmware MicroPython para Pico W (.uf2)</strong></a></p>
+<h3 id="paso-1-descargar-el-firmware">Paso 1: Descargar el firmware</h3>
+<p>Primero, obtén el archivo de firmware oficial de MicroPython, descargar la última versión del firmware.<a href="https://www.micropython.org/download/RPI_PICO_W/"> <strong>Firmware MicroPython para Pico W (.uf2)</strong></a></p>
 <p>Guarda este archivo en tu escritorio o en un lugar fácil de encontrar.</p>
 <hr />
-<h3 id="paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el Firmware en la Placa</h3>
+<h3 id="paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el firmware en la placa</h3>
 <p>Ahora, vamos a "flashear" el firmware en la memoria del Pico.</p>
 <ol>
 <li><strong>Mantén presionado</strong> el botón <strong><code>BOOTSEL</code></strong> de tu Pico.</li>
 </ol>
-<p><img alt="Diagrama del proceso de flasheo" src="https://projects-static.raspberrypi.org/projects/get-started-pico-w/dd582d22736dc24fce9ad03b5f9f69b64fa6408c/en/images/bootsel.png" />
-<em><p align="center" ><strong>Imagen:</strong> Botón BOOTSEL</p></em></p>
+<figure align="center">
+  <img alt="Botón BOOTSEL" src="\recursos\pico.png" width="450" />
+<br />
+<figcaption><em><strong>Imagen:</strong> Botón BOOTSEL</em></figcaption>
+</figure>
 <ol>
 <li><strong>Sin soltarlo</strong>, conecta el Pico a tu computadora.</li>
 <li>Aparecerá una unidad llamada <code>RPI-RP2</code>. Ahora <strong>suelta</strong> el botón <code>BOOTSEL</code>.</li>
-<li><strong>Arrastra y suelta</strong> el archivo <code>.uf2</code> que descargaste sobre esa unidad <code>RPI-RP2</code>.</li>
 </ol>
+<figure align="center">
+  <img alt="Unidad RPI-RP2" src="\recursos\unidadRPI-RP2.png" width="450" />
+<br />
+<figcaption><em><strong>Imagen:</strong> Unidad RPI-RP2</em></figcaption>
+</figure>
+<p>!
+4.  <strong>Arrastra y suelta</strong> el archivo <code>.uf2</code> que descargaste sobre esa unidad <code>RPI-RP2</code>.</p>
 <div class="admonition success">
 <p class="admonition-title">¡Firmware Instalado!</p>
-<p>La placa se reiniciará sola y la unidad desaparecerá. Esto es normal.</p>
-</div>
-<hr />
-<h3 id="paso-3-subir-los-archivos-del-curso">Paso 3: Subir los Archivos del Curso</h3>
-<p>Finalmente, carga el código del laboratorio usando Thonny.</p>
-<ol>
-<li>Abre <strong>Thonny</strong> y conecta tu Pico (de forma normal, sin <code>BOOTSEL</code>).</li>
-<li>Verifica que Thonny detecte el Pico en el menú inferior derecho (<code>MicroPython (Raspberry Pi Pico)</code>).</li>
-</ol>
-<p>*<figure markdown="span" align="center">
-  <img alt="Image title" src="https://projects-static.raspberrypi.org/projects/get-started-pico-w/dd582d22736dc24fce9ad03b5f9f69b64fa6408c/en/images/thonny-select-interpreter.png" />
-<br />
-<figcaption><strong>Imagen:</strong> Botón BOOTSEL</figcaption></p>
-<p></figure>*</p>
-<ol>
-<li>Ve a <code>Ver &gt; Archivos</code> para mostrar el explorador de archivos.</li>
-<li>Busca la carpeta <code>firmware/</code> de nuestro proyecto a la izquierda, hazle clic derecho y selecciona <strong><code>Subir a /</code></strong> (<code>Upload to /</code>).</li>
-</ol>
-<div class="admonition danger">
-<p class="admonition-title">Instrucción Crítica</p>
-<p>Asegúrate de subir la <strong>carpeta <code>firmware</code> completa</strong>, no solo los archivos que contiene. La estructura del proyecto es esencial para que funcione.</p>
+<p>La placa se reiniciará sola y la unidad <code>RPI-RP2</code> desaparecerá de tu explorador de archivos. Esto es normal y significa que la instalación fue exitosa.</p>
 </div>
 <hr />
 <h3 id="listo">¡Listo!</h3>
-<p>Tu placa está preparada. Ya puedes cargar los ejemplos a la Raspberry Pi Pico W.</p>
+<p>Tu placa ya tiene MicroPython instalado. Ahora estás listo para continuar con la siguiente guía: <strong><a href="../thony_guide/">programarla usando Thonny</a></strong>.</p>
               
             </div>
           </div><footer>
