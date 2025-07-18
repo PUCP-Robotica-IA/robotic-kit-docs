@@ -25,7 +25,7 @@ Ahora, vamos a "flashear" el firmware en la memoria del Pico.
 
 
 <figure markdown="span" align="center">
-  ![Botón BOOTSEL](..\recursos\pico.png){ width="450" }
+  ![Botón BOOTSEL](../recursos/pico.png){ width="450" }
   <figcaption><em><strong>Imagen:</strong> Botón BOOTSEL</em></figcaption>
 </figure>
 
@@ -35,7 +35,7 @@ Ahora, vamos a "flashear" el firmware en la memoria del Pico.
 
 
 <figure markdown="span" align="center">
-  ![Unidad RPI-RP2](..\recursos\unidadRPI-RP2.png){ width="450" }
+  ![Unidad RPI-RP2](../recursos/unidadRPI-RP2.png){ width="450" }
   <figcaption><em><strong>Imagen:</strong> Unidad RPI-RP2</em></figcaption>
 </figure>
 !
