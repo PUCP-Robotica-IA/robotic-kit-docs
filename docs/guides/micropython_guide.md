@@ -1,6 +1,6 @@
-# Guía de instalación del firmware
+# Guía 1: Instalación del firmware de la Raspberry Pi Pico W
 
-Sigue estos tres pasos para preparar tu placa **Raspberry Pi Pico W** para el laboratorio.
+Sigue estos tres pasos para preparar tu placa **Raspberry Pi Pico W** para los laboratorio.
 
 !!! note "Requisitos"
     -  Una placa **Raspberry Pi Pico W**.

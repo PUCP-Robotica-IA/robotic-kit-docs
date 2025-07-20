@@ -82,3 +82,11 @@ Para que tu programa se ejecute automáticamente cada vez que conectes la placa 
 
 !!! tip "El poder de `main.py`"
     Cualquier código guardado como `main.py` en la memoria de la Pico se ejecutará automáticamente al encenderla.
+
+---
+
+### ¡Listo!
+
+Has completado la configuración inicial y verificado que puedes comunicarte con tu Pico W.
+
+Ahora estás listo para continuar con la siguiente guía: **[Guía 3: Cargar los archivos base del robot](base_guide.md)**.

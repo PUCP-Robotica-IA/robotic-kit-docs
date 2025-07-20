@@ -31,8 +31,9 @@ theme:
 nav:
   - 'Introducción': 'index.md'
   - 'Guía de instalación':
-    - 'Micropython' : 'guides/micropython_guide.md'
-    - 'Thony' : 'guides/thony_guide.md'
+    - 'Guía 1: Instalación del firmware del Micropython' : 'guides/micropython_guide.md'
+    - 'Guía 2: Tu primer programa con Thonny' : 'guides/thony_guide.md'
+    - 'Guía 3: Carga de archivos base': 'guides/base_guide.md'
   - 'Configuración': 
     - 'Configuración de pines': 'configure/configure.md'
   - 'Robot': 

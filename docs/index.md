@@ -51,29 +51,44 @@ Software_Pico/
 
 ---
 
-## Inicio rápido: Cómo usar el firmware
+## Guía de Inicio para Estudiantes
 
-### 1. Flashear el raspberry pi pico W
+Sigue estos pasos en orden para configurar tu robot desde cero y dejarlo listo para los laboratorios.
 
-Sigue las instrucciones del archivo **[guía de instalación](guides/micropython_guide.md)** para instalar MicroPython y cargar los archivos necesarios.
+### Parte 1: Preparación del Entorno
 
-### 2. Configurar tu robot
+En esta parte, instalarás todo el software necesario en tu computadora y en la placa Pico W.
 
-Modifica únicamente el archivo **`firmware/config/student_config.py`** para definir parámetros ajustables por el usuario.
+*   **Paso 1: Instalar el Firmware en la Pico W**
+    *   Sigue las instrucciones de la **[Guía 1: Instalación del Firmware](guides/micropython_guide.md)** para preparar tu placa.
+
+*   **Paso 2: Ejecutar tu Primer Programa**
+    *   Aprende a usar Thonny con la **[Guía 2: Tu primer programa con Thonny](guides/thony_guide.md)**.
+
+*   **Paso 3: Cargar los Archivos del Robot**
+    *   Transfiere las librerías a tu placa siguiendo la **[Guía 3: Carga de archivos base](guides/base_guide.md)**.
+
+### Parte 2: Configuración y Prueba del Robot
+
+Ahora que el entorno está listo, ajustarás los parámetros específicos de tu robot y verificarás que todo funcione.
+
+*   **Paso 4: Configurar los Parámetros de tu Robot**
+    *   Dependiendo de cómo ensamblaste tu robot, puede que necesites invertir la dirección de los motores. Para ello, modifica el archivo de configuración del estudiante.
+    *   En Thonny, busca en el panel de la **Raspberry Pi Pico** el archivo `/config/student_config.py` y ábrelo.
+    *   Modifica los valores `inverted` o `encoder_inverted` según sea necesario. Por ejemplo:
 
 ```python
 MOTOR_DIRECTION = [
-    {"encoder_inverted": True},                   # Motor 0
-    {"inverted": True},                           # Motor 1
+    {"encoder_inverted": True},  # Parámetros para el Motor 0
+    {"inverted": True},          # Parámetros para el Motor 1
 ]
 ```
-
 !!! danger "Advertencia Importante"
-    **No modifiques `config.mpy`** — este archivos está protegido para evitar daños al hardware.
+    **No modifiques `config.mpy`** — este archivo está protegido y contiene la configuración base. Modifica únicamente `student_config.py`.
 
-### 3. Ejecutar un script de ejemplo
-
-Desde Thonny, puedes ejecutar, por ejemplo:
+*   **Paso 5: Verificar el Movimiento de los Motores**
+    *   Este es el paso más importante: comprobar que tu configuración es correcta. Ejecuta el siguiente script en Thonny para probar un motor a la vez.
+    *   Pega este código en Thonny y ejecútalo (botón ▶ o F5).
 
 ```python
 
@@ -98,6 +113,11 @@ robot = get_robot(ROBOT_TYPE, CONFIG[ROBOT_TYPE])
 test_wheel_direction(robot, motor_id=1)
 
 ```
+
+!!! tip "Cómo interpretar la prueba"
+    El script hará que la rueda seleccionada gire hacia adelante y luego hacia atrás.
+    - **Si la rueda se mueve como se espera**, ¡excelente! Pasa a probar el siguiente motor.
+    - **Si la rueda gira en sentido contrario**, ve al Paso 4 y cambia el valor `"inverted": True` (o `False`) para ese motor. Guarda el archivo y vuelve a ejecutar esta prueba.
 
 ---
 
