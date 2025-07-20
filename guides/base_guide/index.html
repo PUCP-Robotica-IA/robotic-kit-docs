@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Equipo 1MTR53" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Guía 1: Instalación del firmware del Micropython - Software Pico - 1MTR53</title>
+    <title>Guía 3: Carga de archivos base - Software Pico - 1MTR53</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Gu\u00eda 1: Instalaci\u00f3n del firmware del Micropython";
-        var mkdocs_page_input_path = "guides\\micropython_guide.md";
+        var mkdocs_page_name = "Gu\u00eda 3: Carga de archivos base";
+        var mkdocs_page_input_path = "guides\\base_guide.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -74,13 +74,13 @@
               </ul>
               <p class="caption"><span class="caption-text">Guía de instalación</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Guía 1: Instalación del firmware del Micropython</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#paso-1-descargar-el-firmware">Paso 1: Descargar el firmware</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../micropython_guide/">Guía 1: Instalación del firmware del Micropython</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../micropython_guide/#paso-1-descargar-el-firmware">Paso 1: Descargar el firmware</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el firmware en la placa</a>
+    <li class="toctree-l2"><a class="reference internal" href="../micropython_guide/#paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el firmware en la placa</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#listo">¡Listo!</a>
+    <li class="toctree-l2"><a class="reference internal" href="../micropython_guide/#listo">¡Listo!</a>
     </li>
     </ul>
                   </li>
@@ -98,15 +98,15 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../base_guide/">Guía 3: Carga de archivos base</a>
-    <ul>
-    <li class="toctree-l2"><a class="reference internal" href="../base_guide/#paso-1-descargar-los-archivos-base-del-robot">Paso 1: Descargar los archivos base del robot</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Guía 3: Carga de archivos base</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#paso-1-descargar-los-archivos-base-del-robot">Paso 1: Descargar los archivos base del robot</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="../base_guide/#paso-2-abrir-thonny-y-conectar-la-placa">Paso 2: Abrir Thonny y conectar la placa</a>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-2-abrir-thonny-y-conectar-la-placa">Paso 2: Abrir Thonny y conectar la placa</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="../base_guide/#paso-3-cargar-y-verificar-los-archivos-en-la-pico-w">Paso 3: Cargar y Verificar los Archivos en la Pico W</a>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-3-cargar-y-verificar-los-archivos-en-la-pico-w">Paso 3: Cargar y Verificar los Archivos en la Pico W</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="../base_guide/#paso-4-ejecutar-prueba-de-verificacion-opcional">Paso 4: Ejecutar Prueba de Verificación (Opcional)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-4-ejecutar-prueba-de-verificacion-opcional">Paso 4: Ejecutar Prueba de Verificación (Opcional)</a>
     </li>
     </ul>
                   </li>
@@ -167,9 +167,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Documentos"></a></li>
           <li class="breadcrumb-item">Guía de instalación</li>
-      <li class="breadcrumb-item active">Guía 1: Instalación del firmware del Micropython</li>
+      <li class="breadcrumb-item active">Guía 3: Carga de archivos base</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/PUCP-Robotica-IA/Software_Pico/edit/main/docs/guides/micropython_guide.md">Editar en Ver en GitHub</a>
+          <a href="https://github.com/PUCP-Robotica-IA/Software_Pico/edit/main/docs/guides/base_guide.md">Editar en Ver en GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -177,55 +177,100 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="guia-1-instalacion-del-firmware-de-la-raspberry-pi-pico-w">Guía 1: Instalación del firmware de la Raspberry Pi Pico W</h1>
-<p>Sigue estos tres pasos para preparar tu placa <strong>Raspberry Pi Pico W</strong> para los laboratorio.</p>
+                <h1 id="guia-3-carga-de-archivos-base-y-librerias-para-el-robot-pico-w">Guía 3: Carga de archivos base y librerías para el robot (Pico W)</h1>
+<p>Ya tenemos Thonny funcionando y la Pico W con el firmware instalado. Ahora cargaremos un conjunto de archivos esenciales que contienen funciones, librerías y configuraciones necesarias para controlar tu robot.</p>
 <div class="admonition note">
 <p class="admonition-title">Requisitos</p>
 <ul>
-<li>Una placa <strong>Raspberry Pi Pico W</strong>.</li>
+<li>Haber completado la <strong><a href="../thony_guide/">Guía 2: Tu primer programa con Thonny</a></strong>.</li>
+<li>Tu placa <strong>Raspberry Pi Pico W</strong> conectada a la computadora.</li>
 <li>Un <strong>cable de datos</strong> micro-USB.</li>
-<li>El editor <strong><a href="https://thonny.org/">Thonny IDE</a></strong> instalado.</li>
+<li>Acceso al archivo <code>.zip</code> con los archivos del robot.</li>
 </ul>
 </div>
 <hr />
-<h3 id="paso-1-descargar-el-firmware">Paso 1: Descargar el firmware</h3>
-<p>Primero, obtén el archivo de firmware oficial de MicroPython, descargar la última versión del firmware.<a href="https://www.micropython.org/download/RPI_PICO_W/"> <strong>Firmware MicroPython para Pico W (.uf2)</strong></a></p>
-<p>Guarda este archivo en tu escritorio o en un lugar fácil de encontrar.</p>
+<h3 id="paso-1-descargar-los-archivos-base-del-robot">Paso 1: Descargar los archivos base del robot</h3>
+<p>Hemos preparado un paquete que contiene todos los archivos y carpetas necesarias para que tu robot funcione correctamente.</p>
+<ol>
+<li>
+<p>Descarga el archivo <code>.zip</code> desde el siguiente enlace:
+    📦 <strong><a href="https://github.com/PUCP-Robotica-IA/Software_Pico">Descargar archivos base del robot</a></strong></p>
+</li>
+<li>
+<p>Una vez descargado, <strong>extrae (descomprime)</strong> el contenido. Verás una carpeta que contiene subcarpetas como:
+    <figure markdown="span" align="center">
+       <img alt="carpetas" src="../../recursos/libreria_base.png" width="450" />
+       <figcaption><em><strong>Imagen:</strong> Distribución de carpetas</em></figcaption>
+    </figure></p>
+</li>
+</ol>
 <hr />
-<h3 id="paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el firmware en la placa</h3>
-<p>Ahora, vamos a "flashear" el firmware en la memoria del Pico.</p>
+<h3 id="paso-2-abrir-thonny-y-conectar-la-placa">Paso 2: Abrir Thonny y conectar la placa</h3>
 <ol>
-<li><strong>Mantén presionado</strong> el botón <strong><code>BOOTSEL</code></strong> de tu Pico.</li>
+<li>Abre el editor <strong>Thonny</strong>.</li>
+<li>Conecta tu Raspberry Pi Pico W a la computadora (<strong>sin presionar <code>BOOTSEL</code></strong>).</li>
+<li>
+<p>Asegúrate de que en la parte inferior derecha de Thonny esté seleccionado:
+    <code>MicroPython (Raspberry Pi Pico)</code></p>
+<p><figure markdown="span" align="center">
+   <img alt="carpetas" src="../../recursos/Thonny.png" width="550" />
+   <figcaption><em><strong>Imagen:</strong> Distribución de carpetas</em></figcaption>
+</figure></p>
+</li>
+</ol>
+<hr />
+<h3 id="paso-3-cargar-y-verificar-los-archivos-en-la-pico-w">Paso 3: Cargar y Verificar los Archivos en la Pico W</h3>
+<p>En este paso, copiaremos las carpetas del proyecto desde tu computadora a la memoria de la Pico W.</p>
+<ol>
+<li>En Thonny, ve al menú <code>Ver &gt; Archivos</code> para mostrar el explorador de archivos si no está visible.</li>
+<li>En el panel izquierdo (<strong>"Este equipo"</strong>), navega hasta la carpeta que descomprimiste en el Paso 1.</li>
+<li>Selecciona <strong>todo el contenido</strong> de la carpeta (las subcarpetas <code>config</code>, <code>libraries</code>, <code>robot</code>, <code>sensors</code>, <code>utils</code>, etc.). Para seleccionar varios elementos, mantén presionada la tecla <code>Ctrl</code> (o <code>Cmd</code> en Mac) y haz clic en cada uno.</li>
+<li>Haz clic derecho sobre los elementos seleccionados y elige la opción <strong><code>Subir a /</code></strong>.</li>
+<li>Thonny comenzará la carga. Una vez finalizada, <strong>verifica</strong> que en el panel derecho (<strong>"Raspberry Pi Pico"</strong>) aparezcan las carpetas que acabas de subir. La estructura debe verse así:</li>
 </ol>
 <figure align="center">
-  <img alt="Botón BOOTSEL" src="../../recursos/pico.png" width="450" />
+  <img alt="Cargar carpetas a la Pico" src="../../recursos/carga_archivos.gif" width="550" />
 <br />
-<figcaption><em><strong>Imagen:</strong> Botón BOOTSEL</em></figcaption>
+<figcaption><em><strong>Imagen:</strong> Proceso de subir las carpetas del proyecto a la Pico W.</em></figcaption>
 </figure>
-<ol>
-<li><strong>Sin soltarlo</strong>, conecta el Pico a tu computadora.</li>
-<li>Aparecerá una unidad llamada <code>RPI-RP2</code>. Ahora <strong>suelta</strong> el botón <code>BOOTSEL</code>.</li>
-</ol>
-<figure align="center">
-  <img alt="Unidad RPI-RP2" src="../../recursos/unidadRPI-RP2.png" width="450" />
-<br />
-<figcaption><em><strong>Imagen:</strong> Unidad RPI-RP2</em></figcaption>
-</figure>
-<p>!
-4.  <strong>Arrastra y suelta</strong> el archivo <code>.uf2</code> que descargaste sobre esa unidad <code>RPI-RP2</code>.</p>
-<div class="admonition success">
-<p class="admonition-title">¡Firmware Instalado!</p>
-<p>La placa se reiniciará sola y la unidad <code>RPI-RP2</code> desaparecerá de tu explorador de archivos. Esto es normal y significa que la instalación fue exitosa.</p>
+<div class="admonition warning">
+<p class="admonition-title">Sube el contenido, no la carpeta contenedora</p>
+<p>Es crucial que subas las carpetas <code>config</code>, <code>libraries</code>, etc., directamente a la raíz (<code>/</code>) de la Pico. No subas la carpeta principal que las contiene.</p>
 </div>
 <hr />
-<h3 id="listo">¡Listo!</h3>
-<p>Tu placa ya tiene MicroPython instalado. Ahora estás listo para continuar con la siguiente guía: <strong><a href="../thony_guide/">programarla usando Thonny</a></strong>.</p>
+<h3 id="paso-4-ejecutar-prueba-de-verificacion-opcional">Paso 4: Ejecutar Prueba de Verificación (Opcional)</h3>
+<p>Para confirmar que la Pico reconoce correctamente los archivos, puedes ejecutar un pequeño script.</p>
+<ol>
+<li>
+<p>Copia y pega el siguiente código en el editor principal de Thonny:</p>
+<div class="language-py copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">----------Archivos en la Pico:------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">())</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">------------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Presiona <code>F5</code> o el botón de Ejecutar (▶). En la consola (Shell) de Thonny, deberías ver una lista que incluye los nombres de las carpetas que subiste.</p>
+</li>
+</ol>
+<figure align="center">
+  <img alt="Verificar cargar carpetas a la Pico" src="../../recursos/validar_archivos.gif" width="550" />
+<br />
+<figcaption><em><strong>Imagen:</strong> Validando la carga de archivos mediante un script.</em></figcaption>
+</figure>
+<hr />
+<div class="admonition success">
+<p class="admonition-title">¡Carga completada!</p>
+<p>Ya tienes listo el entorno de archivos en tu Raspberry Pi Pico W. Esto te permitirá controlar sensores, motores, y ejecutar programas complejos para tu robot.</p>
+</div>
+<p>En las siguientes guías empezaremos a usar estas librerías para mover el robot, leer sensores y más.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Navegación de pie de página">
-        <a href="../.." class="btn btn-neutral float-left" title="Introducción"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
-        <a href="../thony_guide/" class="btn btn-neutral float-right" title="Guía 2: Tu primer programa con Thonny">Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../thony_guide/" class="btn btn-neutral float-left" title="Guía 2: Tu primer programa con Thonny"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../../configure/configure/" class="btn btn-neutral float-right" title="Configuración de pines">Siguiente <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -252,10 +297,10 @@
         </span>
     
     
-      <span><a href="../.." style="color: #fcfcfc">&laquo; Anterior</a></span>
+      <span><a href="../thony_guide/" style="color: #fcfcfc">&laquo; Anterior</a></span>
     
     
-      <span><a href="../thony_guide/" style="color: #fcfcfc">Siguiente &raquo;</a></span>
+      <span><a href="../../configure/configure/" style="color: #fcfcfc">Siguiente &raquo;</a></span>
     
   </span>
 </div>
