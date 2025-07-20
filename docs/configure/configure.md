@@ -1,32 +1,57 @@
 # CONFIGURACIONES INICIALES
 
-## config.py
+## Librería `CONFIG`
 
-📦 **CONFIG:** Diccionario de configuración de hardware
+La librería `CONFIG` contiene la configuración de hardware para diferentes tipos de robots. Cada tipo tiene su propia estructura, que detalla los motores, sensores y periféricos necesarios para operar correctamente.
 
-Este bloque de código es un diccionario en Python que contiene la configuración de hardware para distintos tipos de robots o dispositivos. Cada clave representa una configuración específica que puede activarse según el tipo de robot que se esté utilizando.
+### 📦 Diccionario de configuración
 
-*   `CONFIG ["test"]` : Configura al robot omnidireccional en modo prueba para usar dos de sus ruedas mediante mediante señales PWM, encoders(a,b) y dirección.
-  * PWM, dirección y encoders.
-*   `CONFIG ["mecanum"]` : Configura al robot omnidireccional para usar sus cuatro ruedas y sensores asociador.
-  * PWM, dirección y encoders.
-  * Sensores ultrasónicos (3) conectados a pines analógicos (ADC).
-  * Sensor IMU conectado por I2C.
-*   `CONFIG ["arm"]` : Configura al brazo robotico de cuatro grados de libertad.    
-  * 4 servomotores.
-  * Salida para efector final.
-  * Sensor ultrasonido.
-*   `CONFIG ["sensors"]` : Configura al brazo robotico de cuatro grados de libertad.    
-  * Sensores ultrasónicos (3) conectados a pines analógicos (ADC).
-  * Sensor IMU conectado por I2C.
+!!! abstract "CONFIG: Diccionario centralizado"
 
+    El diccionario `CONFIG` se utiliza para definir y seleccionar configuraciones predeterminadas de hardware. Las claves representan diferentes perfiles de robot.
 
-`merge_motor_directions(config)`
+    Puedes acceder a una configuración específica así:
 
-Esta función toma un subdiccionario del diccionario CONFIG que contiene una lista de parámetros de configuración para motores bajo la clave "motors", y fusiona cada uno de ellos con posibles valores adicionales definidos externamente (por ejemplo, direcciones personalizadas).
-    
-Parámetros:
+    ```python
+    from config import CONFIG
 
-*   `config: 'dict'`
-  
-  Diccionario de configuración de hardware correspondiente al robot omnidireccional.
+    ROBOT_TYPE = "mecanum"
+    config_actual = CONFIG[ROBOT_TYPE]
+    ```
+
+### 🧩 Configuraciones disponibles
+
+!!! info "CONFIG[\"mecanum\"] – Robot omnidireccional completo"
+
+    Configura un robot con 4 ruedas mecanum y sensores integrados.
+
+    - Control individual de 4 motores con PWM, dirección y encoders.
+    - 3 sensores ultrasónicos conectados a entradas analógicas (ADC).
+    - Sensor IMU conectado por I2C.
+
+<figure markdown="span" align="center">
+  ![Image title](../recursos/mecanum.gif){ width="450" }
+  <figcaption><em><strong>Imagen:</strong> Robot mecanum con 4 ruedas omnidireccionales.</em></figcaption>
+</figure>
+
+!!! info "CONFIG[\"arm\"] – Brazo robótico (4DOF)"
+
+    Configura un brazo robótico de 4 grados de libertad.
+
+    - 4 servomotores para articulaciones.
+    - Salida de control para efector final.
+    - Sensor ultrasónico para percepción frontal.
+
+<figure markdown="span" align="center">
+  ![Image title](../recursos/arm.gif){ width="450" }
+  <figcaption><em><strong>Imagen:</strong> Brazo robótico de 4DOF.</em></figcaption>
+</figure>
+
+!!! info "CONFIG[\"sensors\"] – Sensores independientes"
+
+    Configuración para usar solo los sensores del sistema.
+
+    - 3 sensores ultrasónicos por ADC.
+    - IMU conectada vía I2C.
+
+---
