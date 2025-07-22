@@ -68,56 +68,58 @@ En esta parte, instalarás todo el software necesario en tu computadora y en la 
 *   **Paso 3: Cargar los Archivos del Robot**
     *   Transfiere las librerías a tu placa siguiendo la **[Guía 3: Carga de archivos base](guides/base_guide.md)**.
 
-### Parte 2: Configuración y Prueba del Robot
+---
+### Parte 2: Configuración y Verificación del Robot
 
-Ahora que el entorno está listo, ajustarás los parámetros específicos de tu robot y verificarás que todo funcione.
+Una vez finalizada la configuración del entorno, el siguiente paso es la calibración de los motores para asegurar su correcto funcionamiento.
 
-*   **Paso 4: Configurar los Parámetros de tu Robot**
-    *   Dependiendo de cómo ensamblaste tu robot, puede que necesites invertir la dirección de los motores. Para ello, modifica el archivo de configuración del estudiante.
-    *   En Thonny, busca en el panel de la **Raspberry Pi Pico** el archivo `/config/student_config.py` y ábrelo.
-    *   Modifica los valores `inverted` o `encoder_inverted` según sea necesario. Por ejemplo:
+*   **Paso 4: Verificación y Ajuste de la Dirección de los Motores**
 
-```python
-MOTOR_DIRECTION = [
-    {"encoder_inverted": True},  # Parámetros para el Motor 0
-    {"inverted": True},          # Parámetros para el Motor 1
-]
-```
-!!! danger "Advertencia Importante"
-    **No modifiques `config.mpy`** — este archivo está protegido y contiene la configuración base. Modifica únicamente `student_config.py`.
+    Se debe seguir un proceso iterativo de prueba y ajuste para cada motor del robot.
 
-*   **Paso 5: Verificar el Movimiento de los Motores**
-    *   Este es el paso más importante: comprobar que tu configuración es correcta. Ejecuta el siguiente script en Thonny para probar un motor a la vez.
-    *   Pega este código en Thonny y ejecútalo (botón ▶ o F5).
+    1.  **Abrir el script de diagnóstico:** Mediante Thonny, abra el archivo `1_test_wheel_direction.py`, ubicado en el directorio `student_examples/` de su proyecto local.
 
-```python
+    2.  **Seleccionar el motor a probar:** En el código fuente del script, modifique el valor del parámetro `motor_id` en la llamada a la función `test_wheel_direction()`. Asigne el índice del motor que desea verificar (p. ej., `motor_id=0` para el primer motor).
 
-# Función de diagnóstico para verificar sentido de giro y lectura del encoder
-from tests.helpers.motor import test_wheel_direction
-# Diccionario de configuración que contiene parámetros del robot
-from config import CONFIG
-# Función que retorna una instancia del robot basado en el tipo
-from robot import get_robot
+    ```py
+        # En el archivo 1_test_wheel_direction.py
+        ROBOT_TYPE = 'test'
+        # Inicializa la instancia del robot con los parámetros correspondientes
+        robot = get_robot(ROBOT_TYPE, CONFIG[ROBOT_TYPE])
 
-#=========================================================
-# Selección del tipo de robot a utilizar en el test.
-# Debe de estar definido el config.py
-#=========================================================
-ROBOT_TYPE = 'test'
-# Inicializa la instancia del robot con los parámetros correspondientes
-robot = get_robot(ROBOT_TYPE, CONFIG[ROBOT_TYPE])
+        # Ejecuta la prueba en el motor con índice 1
+        # Realizar la prueba con cada motor y modificar la configuración
+        # en config.py según corresponda
+        test_wheel_direction(robot, motor_id=1)
+    ```
 
-# Ejecuta la prueba en el motor con índice 1
-# Realizar la prueba con cada motor y modificar la configuración
-# en config.py según corresponda
-test_wheel_direction(robot, motor_id=1)
+    3.  **Ejecutar la prueba:** Ejecute el script en Thonny (▶). Observe el comportamiento físico de la rueda seleccionada y la información de diagnóstico que se imprime en la consola.
 
-```
+    4.  **Aplicar correcciones (si es necesario):** Si el comportamiento observado no es el esperado, abra el archivo de configuración `/config/student_config.py` ubicado en la memoria de la Raspberry Pi Pico.
 
-!!! tip "Cómo interpretar la prueba"
-    El script hará que la rueda seleccionada gire hacia adelante y luego hacia atrás.
-    - **Si la rueda se mueve como se espera**, ¡excelente! Pasa a probar el siguiente motor.
-    - **Si la rueda gira en sentido contrario**, ve al Paso 4 y cambia el valor `"inverted": True` (o `False`) para ese motor. Guarda el archivo y vuelve a ejecutar esta prueba.
+        !!! danger "Advertencia Importante"
+            **No modifiques `config.mpy`** — este archivo está protegido y contiene la configuración base. Modifica únicamente `student_config.py`.
+
+        Aplique los siguientes ajustes según el caso:
+        *   **Rotación del motor invertida:** Si el motor gira en la dirección opuesta a la esperada, añada el parámetro `"inverted": True` al diccionario del motor correspondiente.
+        *   **Lectura del encoder invertida:** Si la consola indica que la lectura del encoder es incorrecta, añada el parámetro `"encoder_inverted": True`.
+        *   **Operación correcta:** Si el motor funciona correctamente, el diccionario correspondiente debe permanecer vacío (`{}`).
+
+        ```python
+        # Ejemplo de aplicación de correcciones en /config/student_config.py
+        MOTOR_DIRECTION = [
+            {"inverted": True},          # Motor 0: requería inversión de giro.
+            {},                          # Motor 1: operaba correctamente.
+            {"encoder_inverted": True},  # Motor 2: requería inversión de la lectura del encoder.
+            # ... y así sucesivamente.
+        ]
+        ```
+
+    5.  **Guardar y repetir el proceso:** Guarde los cambios en el archivo `student_config.py` y repita los pasos 2 a 4 para cada uno de los motores del robot.
+
+!!! note "Documentación Detallada"
+    Para una explicación exhaustiva de los parámetros de configuración, incluyendo diagramas y ejemplos visuales de cada caso de prueba, consulte la siguiente guía:
+    ➡️ **[Guía de Configuración y Calibración de Motores](configure/motor_config_guide.md)**
 
 ---
 

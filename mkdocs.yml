@@ -36,6 +36,7 @@ nav:
     - 'Guía 3: Carga de archivos base': 'guides/base_guide.md'
   - 'Configuración': 
     - 'Configuración de pines': 'configure/configure.md'
+    - 'Configuración y calibración de motores': 'configure/motor_config_guide.md'
   - 'Robot': 
     - 'Robot': 'robot/robot.md'
   - 'Sensores':
