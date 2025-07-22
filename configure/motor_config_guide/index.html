@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Equipo 1MTR53" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Configuración y calibración de motores - Software Pico - 1MTR53</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configuraci\u00f3n y calibraci\u00f3n de motores";
+        var mkdocs_page_input_path = "configure\\motor_config_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/markdown.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Software Pico - 1MTR53
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" title="Escriba el término de búsqueda aquí" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegación">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introducción</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../..#objetivos-del-proyecto">Objetivos del proyecto</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#plataformas-soportadas">Plataformas soportadas</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#estructura-del-repositorio">Estructura del repositorio</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#guia-de-inicio-para-estudiantes">Guía de Inicio para Estudiantes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="../..#parte-1-preparacion-del-entorno">Parte 1: Preparación del Entorno</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../..#parte-2-configuracion-y-verificacion-del-robot">Parte 2: Configuración y Verificación del Robot</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#laboratorios-incluidos">Laboratorios incluidos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#versionado">Versionado</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#organizacion-del-desarrollo">Organización del Desarrollo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#licencia">Licencia</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../..#contacto">Contacto</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Guía de instalación</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/micropython_guide/">Guía 1: Instalación del firmware del Micropython</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/micropython_guide/#paso-1-descargar-el-firmware">Paso 1: Descargar el firmware</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/micropython_guide/#paso-2-instalar-el-firmware-en-la-placa">Paso 2: Instalar el firmware en la placa</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/micropython_guide/#listo">¡Listo!</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/thony_guide/">Guía 2: Tu primer programa con Thonny</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/thony_guide/#paso-1-instalar-el-editor-thonny">Paso 1: Instalar el editor Thonny</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/thony_guide/#paso-2-conectar-la-placa-a-thonny">Paso 2: Conectar la placa a Thonny</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/thony_guide/#paso-3-codigo-de-prueba-led-intermitente">Paso 3: Código de prueba (LED intermitente)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/thony_guide/#paso-4-opcional-pero-recomendado-guardar-el-codigo-en-la-placa">Paso 4 (Opcional pero recomendado): Guardar el código en la placa</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/thony_guide/#listo">¡Listo!</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/base_guide/">Guía 3: Carga de archivos base</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/base_guide/#paso-1-descargar-los-archivos-base-del-robot">Paso 1: Descargar los archivos base del robot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/base_guide/#paso-2-abrir-thonny-y-conectar-la-placa">Paso 2: Abrir Thonny y conectar la placa</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/base_guide/#paso-3-cargar-y-verificar-los-archivos-en-la-pico-w">Paso 3: Cargar y Verificar los Archivos en la Pico W</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../guides/base_guide/#paso-4-ejecutar-prueba-de-verificacion-opcional">Paso 4: Ejecutar Prueba de Verificación (Opcional)</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuración</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../configure/">Configuración de pines</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../configure/#configpy">config.py</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuración y calibración de motores</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#paso-1-entender-los-archivos-de-configuracion">Paso 1: Entender los Archivos de Configuración</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-2-preparar-el-script-de-diagnostico">Paso 2: Preparar el Script de Diagnóstico</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-3-ejecutar-la-prueba-y-aplicar-correcciones">Paso 3: Ejecutar la Prueba y Aplicar Correcciones</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#caso-a-funcionamiento-correcto">Caso A: Funcionamiento Correcto ✅</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#caso-b-motor-con-giro-invertido">Caso B: Motor con Giro Invertido 🔄</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#caso-c-lectura-del-encoder-invertida">Caso C: Lectura del Encoder Invertida 📈📉</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-4-verificacion-final">Paso 4: Verificación Final</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Robot</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../robot/robot/">Robot</a>
+    <ul>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Sensores</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sensors/sensor/">sensor</a>
+    <ul>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sensors/ultrasonico/">ultrasonido</a>
+    <ul>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pruebas</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/test/">prueba1</a>
+    <ul>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Códigos útiles</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../utils/util/">utilidad</a>
+    <ul>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Menú de navegación en móvil">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Software Pico - 1MTR53</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Documentos"></a></li>
+          <li class="breadcrumb-item">Configuración</li>
+      <li class="breadcrumb-item active">Configuración y calibración de motores</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/PUCP-Robotica-IA/Software_Pico/edit/main/docs/configure/motor_config_guide.md">Editar en Ver en GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="configuracion-y-calibracion-de-motores">Configuración y Calibración de Motores</h1>
+<p>Ya tienes los archivos base en tu Pico W. El siguiente paso, y uno de los más importantes, es asegurar que cada motor de tu robot gire en la dirección correcta. Esta guía te enseñará a diagnosticar y corregir el comportamiento de cada motor de forma individual.</p>
+<div class="admonition note">
+<p class="admonition-title">Requisitos</p>
+<ul>
+<li>Haber completado la <strong><a href="base_guide.md">Guía 3: Carga de archivos base</a></strong>.</li>
+<li>Tu placa <strong>Raspberry Pi Pico W</strong> conectada a la computadora y con los archivos del proyecto ya cargados.</li>
+<li>El editor <strong>Thonny</strong> abierto y conectado a la Pico.</li>
+</ul>
+</div>
+<hr />
+<h3 id="paso-1-entender-los-archivos-de-configuracion">Paso 1: Entender los Archivos de Configuración</h3>
+<p>El firmware separa la configuración en dos archivos para proteger el hardware y darte flexibilidad.</p>
+<ol>
+<li><strong><code>config.py</code></strong>: Es la configuración base del hardware (pines, etc.). <strong>Este archivo NO debes modificarlo.</strong></li>
+<li><strong><code>student_config.py</code></strong>: Este es <strong>tu archivo de configuración personal</strong>. Aquí realizarás todos los ajustes.</li>
+</ol>
+<p>Dentro de <code>student_config.py</code> puedes usar dos parámetros para cada motor:
+-   <code>"inverted": True</code>: Invierte la <strong>dirección de giro físico</strong> del motor.
+-   <code>"encoder_inverted": True</code>: Invierte la <strong>lectura del sensor de giro (encoder)</strong>, sin afectar el movimiento físico.</p>
+<div class="admonition danger">
+<p class="admonition-title">Advertencia Importante</p>
+<p>La modificación incorrecta de archivos puede causar un comportamiento inesperado. Realiza todos los cambios <strong>exclusivamente en <code>student_config.py</code></strong>.</p>
+</div>
+<hr />
+<h3 id="paso-2-preparar-el-script-de-diagnostico">Paso 2: Preparar el Script de Diagnóstico</h3>
+<p>Usaremos un script preparado para probar cada motor de forma aislada.</p>
+<ol>
+<li>En Thonny, asegúrate de tener visible el panel de archivos (<code>Ver &gt; Archivos</code>).</li>
+<li>En el panel de <strong>"Este equipo"</strong> (tu computadora), navega hasta el directorio del proyecto y abre la carpeta <code>student_examples</code>.</li>
+<li>
+<p>Localiza y haz doble clic en el archivo <code>1_test_wheel_direction.py</code> para abrirlo en el editor.</p>
+<p><figure markdown="span" align="center">
+  <img alt="Abrir Script de Prueba" src="../recursos/abrir_script_prueba.png" width="600" />
+  <figcaption><em><strong>Imagen:</strong> Localizando el script de prueba en el explorador de archivos de Thonny.</em></figcaption>
+</figure></p>
+</li>
+<li>
+<p>Dentro del script, busca la línea final que llama a la función <code>test_wheel_direction()</code>. Para empezar, asegúrate de que esté probando el primer motor, cambiando el parámetro a <code>motor_id=0</code>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Al final del archivo 1_test_wheel_direction.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">test_wheel_direction</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">motor_id</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div>
+</li>
+</ol>
+<hr />
+<h3 id="paso-3-ejecutar-la-prueba-y-aplicar-correcciones">Paso 3: Ejecutar la Prueba y Aplicar Correcciones</h3>
+<p>Este es el ciclo principal: ejecutar la prueba, observar el resultado y corregir si es necesario.</p>
+<ol>
+<li><strong>Ejecuta el script</strong> presionando el botón de Play (▶) en Thonny.</li>
+<li><strong>Observa</strong> atentamente el comportamiento de la rueda del motor 0 y la información que aparece en la consola de Thonny.</li>
+<li><strong>Compara</strong> lo que ves con los siguientes casos y aplica la corrección correspondiente.</li>
+</ol>
+<h4 id="caso-a-funcionamiento-correcto">Caso A: Funcionamiento Correcto ✅</h4>
+<ul>
+<li><strong>Observación:</strong> La rueda gira hacia adelante, luego hacia atrás. La consola muestra una lectura positiva del encoder al avanzar.</li>
+<li><strong>Acción:</strong> ¡Perfecto! No necesitas hacer nada. Pasa a probar el siguiente motor (<code>motor_id=1</code>).</li>
+</ul>
+<figure align="center">
+  <img alt="Motor OK" src="../recursos/motor_ok.gif" width="450" />
+<br />
+<figcaption><em><strong>Imagen:</strong> Comportamiento esperado del motor.</em></figcaption>
+</figure>
+<h4 id="caso-b-motor-con-giro-invertido">Caso B: Motor con Giro Invertido 🔄</h4>
+<ul>
+<li><strong>Observación:</strong> La rueda gira en la dirección opuesta a la esperada (hacia atrás cuando debería ir hacia adelante).</li>
+<li><strong>Acción:</strong><ol>
+<li>En el panel de archivos de la <strong>Raspberry Pi Pico</strong>, abre el archivo <code>/config/student_config.py</code>.</li>
+<li>Añade <code>"inverted": True</code> al diccionario del motor que estás probando.</li>
+<li>Guarda el archivo (<code>Ctrl+S</code>) y vuelve a ejecutar la prueba para confirmar que el problema está resuelto.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># En student_config.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">MOTOR_DIRECTION</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="p">{</span><span class="s2">&quot;inverted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="c1"># Corrección para el Motor 0</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="c1">#...</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">]</span>
+</span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<figure align="center">
+  <img alt="Motor Invertido" src="../../recursos/motores.png" width="450" />
+<br />
+<figcaption><em><strong>Imagen:</strong> El motor gira en sentido contrario.</em></figcaption>
+</figure>
+<h4 id="caso-c-lectura-del-encoder-invertida">Caso C: Lectura del Encoder Invertida 📈📉</h4>
+<ul>
+<li><strong>Observación:</strong> El movimiento físico de la rueda es correcto, pero la consola muestra una lectura con signo contrario (p. ej., negativa al avanzar).</li>
+<li><strong>Acción:</strong><ol>
+<li>Abre <code>/config/student_config.py</code> en tu <strong>Pico</strong>.</li>
+<li>Añade <code>"encoder_inverted": True</code> al diccionario del motor correspondiente.</li>
+<li>Guarda y vuelve a ejecutar la prueba para verificar que la lectura ahora es correcta.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># En student_config.py</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">MOTOR_DIRECTION</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">{</span><span class="s2">&quot;encoder_inverted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="c1"># Corrección para el Motor 0</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="c1">#...</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">]</span>
+</span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3 id="paso-4-verificacion-final">Paso 4: Verificación Final</h3>
+<p>Una vez que el primer motor funcione correctamente, repite el <strong>Paso 3</strong> para todos los demás motores de tu robot (<code>motor_id=1</code>, <code>motor_id=2</code>, etc.).</p>
+<p>Al finalizar, tu archivo <code>student_config.py</code> contendrá la configuración personalizada para tu robot. Podría verse así:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Ejemplo de una configuración final para un robot de 4 ruedas</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">MOTOR_DIRECTION</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="p">{},</span>                          <span class="c1"># Motor 0: Operaba correctamente.</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="p">{</span><span class="s2">&quot;inverted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>          <span class="c1"># Motor 1: Requería inversión de giro.</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="p">{</span><span class="s2">&quot;encoder_inverted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>  <span class="c1"># Motor 2: Solo el encoder estaba invertido.</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="p">{</span><span class="s2">&quot;inverted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>          <span class="c1"># Motor 3: Requería inversión de giro.</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">]</span>
+</span></code></pre></div>
+<hr />
+<div class="admonition success">
+<p class="admonition-title">¡Calibración Completada!</p>
+<p>¡Excelente trabajo! Has finalizado la calibración de los motores. Tu robot ahora responde con precisión y está listo para los laboratorios de movimiento y control.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Navegación de pie de página">
+        <a href="../configure/" class="btn btn-neutral float-left" title="Configuración de pines"><span class="icon icon-circle-arrow-left"></span> Anterior</a>
+        <a href="../../robot/robot/" class="btn btn-neutral float-right" title="Robot">Siguiente <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Construído con <a href="https://www.mkdocs.org/">MkDocs</a> usando un <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a> provisto por <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versiones">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/PUCP-Robotica-IA/Software_Pico" class="fa fa-code-fork" style="color: #fcfcfc"> Ver en GitHub</a>
+        </span>
+    
+    
+      <span><a href="../configure/" style="color: #fcfcfc">&laquo; Anterior</a></span>
+    
+    
+      <span><a href="../../robot/robot/" style="color: #fcfcfc">Siguiente &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
