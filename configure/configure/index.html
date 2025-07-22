@@ -115,7 +115,13 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuración de pines</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#configpy">config.py</a>
+    <li class="toctree-l2"><a class="reference internal" href="#libreria-config">Librería CONFIG</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#diccionario-de-configuracion">📦 Diccionario de configuración</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuraciones-disponibles">🧩 Configuraciones disponibles</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -144,6 +150,66 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../robot/robot/">Robot</a>
     <ul>
+    <li class="toctree-l2"><a class="reference internal" href="../../robot/robot/#paso-1-definir-la-clase-base-del-robot">PASO 1: Definir la clase base del robot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../robot/robot/#paso-2-controlar-el-robot">PASO 2: Controlar el robot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="../../robot/robot/#metodos-asociados-a-la-clase-base-del-robot">Métodos asociados a la clase base del robot</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="../../robot/robot/#funciones-relacionadas-con-el-movimiento-del-robot">Funciones relacionadas con el movimiento del robot</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmove">ROBOT.MOVE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotstop">ROBOT.STOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotset_custom_jacobian">ROBOT.SET_CUSTOM_JACOBIAN</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../../robot/robot/#funciones-relacionadas-con-el-control-en-lazo-cerrado">Funciones relacionadas con el control en lazo cerrado</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotset_control_mode">ROBOT.SET_CONTROL_MODE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotset_pid_constants">ROBOT.SET_PID_CONSTANTS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotenable_auto_update">ROBOT.ENABLE_AUTO_UPDATE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../../robot/robot/#funciones-relacionadas-con-los-motores-individuales">Funciones relacionadas con los motores individuales</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmotorsidset_speed">ROBOT.MOTORS.ID.SET_SPEED</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmotorsidstop">ROBOT.MOTORS.ID.STOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmotorsidget_speed">ROBOT.MOTORS.ID.GET_SPEED</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmotorsidget_state">ROBOT.MOTORS.ID.GET_STATE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmotorsidenable_close_loop_control">ROBOT.MOTORS.ID.ENABLE_CLOSE_LOOP_CONTROL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotmotorsidtune_pid">ROBOT.MOTORS.ID.TUNE_PID</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../../robot/robot/#funciones-relacionadas-con-la-lectura-de-sensores-del-robot">Funciones relacionadas con la lectura de sensores del robot</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotsensorsread_imu_theta">ROBOT.SENSORS.READ_IMU_THETA</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotsensorsread_imu_values">ROBOT.SENSORS.READ_IMU_VALUES</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotsensorsread_ultrasonic_value">ROBOT.SENSORS.READ_ULTRASONIC_VALUE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="../../robot/robot/#robotsensorsread_ultrasonic_all">ROBOT.SENSORS.READ_ULTRASONIC_ALL</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../../robot/robot/#robotupdate_odometry">ROBOT.UPDATE_ODOMETRY</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../../robot/robot/#robotmotors">ROBOT.MOTORS</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -198,31 +264,57 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="configuraciones-iniciales">CONFIGURACIONES INICIALES</h1>
-<h2 id="configpy">config.py</h2>
-<p>📦 <strong>CONFIG:</strong> Diccionario de configuración de hardware</p>
-<p>Este bloque de código es un diccionario en Python que contiene la configuración de hardware para distintos tipos de robots o dispositivos. Cada clave representa una configuración específica que puede activarse según el tipo de robot que se esté utilizando.</p>
+<h2 id="libreria-config">Librería <code>CONFIG</code></h2>
+<p>La librería <code>CONFIG</code> contiene la configuración de hardware para diferentes tipos de robots. Cada tipo tiene su propia estructura, que detalla los motores, sensores y periféricos necesarios para operar correctamente.</p>
+<h3 id="diccionario-de-configuracion">📦 Diccionario de configuración</h3>
+<div class="admonition abstract">
+<p class="admonition-title">CONFIG: Diccionario centralizado</p>
+<p>El diccionario <code>CONFIG</code> se utiliza para definir y seleccionar configuraciones predeterminadas de hardware. Las claves representan diferentes perfiles de robot.</p>
+<p>Puedes acceder a una configuración específica así:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONFIG</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">ROBOT_TYPE</span> <span class="o">=</span> <span class="s2">&quot;mecanum&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">config_actual</span> <span class="o">=</span> <span class="n">CONFIG</span><span class="p">[</span><span class="n">ROBOT_TYPE</span><span class="p">]</span>
+</span></code></pre></div>
+</div>
+<h3 id="configuraciones-disponibles">🧩 Configuraciones disponibles</h3>
+<div class="admonition info">
+<p class="admonition-title">CONFIG[\"mecanum\"] – Robot omnidireccional completo</p>
+<p>Configura un robot con 4 ruedas mecanum y sensores integrados.</p>
 <ul>
-<li><code>CONFIG ["test"]</code> : Configura al robot omnidireccional en modo prueba para usar dos de sus ruedas mediante mediante señales PWM, encoders(a,b) y dirección.</li>
-<li>PWM, dirección y encoders.</li>
-<li><code>CONFIG ["mecanum"]</code> : Configura al robot omnidireccional para usar sus cuatro ruedas y sensores asociador.</li>
-<li>PWM, dirección y encoders.</li>
-<li>Sensores ultrasónicos (3) conectados a pines analógicos (ADC).</li>
-<li>Sensor IMU conectado por I2C.</li>
-<li><code>CONFIG ["arm"]</code> : Configura al brazo robotico de cuatro grados de libertad.    </li>
-<li>4 servomotores.</li>
-<li>Salida para efector final.</li>
-<li>Sensor ultrasonido.</li>
-<li><code>CONFIG ["sensors"]</code> : Configura al brazo robotico de cuatro grados de libertad.    </li>
-<li>Sensores ultrasónicos (3) conectados a pines analógicos (ADC).</li>
+<li>Control individual de 4 motores con PWM, dirección y encoders.</li>
+<li>3 sensores ultrasónicos conectados a entradas analógicas (ADC).</li>
 <li>Sensor IMU conectado por I2C.</li>
 </ul>
-<p><code>merge_motor_directions(config)</code></p>
-<p>Esta función toma un subdiccionario del diccionario CONFIG que contiene una lista de parámetros de configuración para motores bajo la clave "motors", y fusiona cada uno de ellos con posibles valores adicionales definidos externamente (por ejemplo, direcciones personalizadas).</p>
-<p>Parámetros:</p>
+</div>
+<figure align="center">
+  <img alt="Image title" src="../../recursos/mecanum.gif" width="450" />
+<br />
+<figcaption><em><strong>Imagen:</strong> Robot mecanum con 4 ruedas omnidireccionales.</em></figcaption>
+</figure>
+<div class="admonition info">
+<p class="admonition-title">CONFIG[\"arm\"] – Brazo robótico (4DOF)</p>
+<p>Configura un brazo robótico de 4 grados de libertad.</p>
 <ul>
-<li><code>config: 'dict'</code></li>
+<li>4 servomotores para articulaciones.</li>
+<li>Salida de control para efector final.</li>
+<li>Sensor ultrasónico para percepción frontal.</li>
 </ul>
-<p>Diccionario de configuración de hardware correspondiente al robot omnidireccional.</p>
+</div>
+<figure align="center">
+  <img alt="Image title" src="../../recursos/arm.gif" width="450" />
+<br />
+<figcaption><em><strong>Imagen:</strong> Brazo robótico de 4DOF.</em></figcaption>
+</figure>
+<div class="admonition info">
+<p class="admonition-title">CONFIG[\"sensors\"] – Sensores independientes</p>
+<p>Configuración para usar solo los sensores del sistema.</p>
+<ul>
+<li>3 sensores ultrasónicos por ADC.</li>
+<li>IMU conectada vía I2C.</li>
+</ul>
+</div>
+<hr />
               
             </div>
           </div><footer>

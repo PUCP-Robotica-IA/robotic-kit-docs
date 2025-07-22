@@ -115,7 +115,13 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../configure/configure/">Configuración de pines</a>
     <ul>
-    <li class="toctree-l2"><a class="reference internal" href="../../configure/configure/#configpy">config.py</a>
+    <li class="toctree-l2"><a class="reference internal" href="../../configure/configure/#libreria-config">Librería CONFIG</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="../../configure/configure/#diccionario-de-configuracion">📦 Diccionario de configuración</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="../../configure/configure/#configuraciones-disponibles">🧩 Configuraciones disponibles</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -144,6 +150,66 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Robot</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#paso-1-definir-la-clase-base-del-robot">PASO 1: Definir la clase base del robot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#paso-2-controlar-el-robot">PASO 2: Controlar el robot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metodos-asociados-a-la-clase-base-del-robot">Métodos asociados a la clase base del robot</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#funciones-relacionadas-con-el-movimiento-del-robot">Funciones relacionadas con el movimiento del robot</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmove">ROBOT.MOVE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotstop">ROBOT.STOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotset_custom_jacobian">ROBOT.SET_CUSTOM_JACOBIAN</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#funciones-relacionadas-con-el-control-en-lazo-cerrado">Funciones relacionadas con el control en lazo cerrado</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#robotset_control_mode">ROBOT.SET_CONTROL_MODE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotset_pid_constants">ROBOT.SET_PID_CONSTANTS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotenable_auto_update">ROBOT.ENABLE_AUTO_UPDATE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#funciones-relacionadas-con-los-motores-individuales">Funciones relacionadas con los motores individuales</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmotorsidset_speed">ROBOT.MOTORS.ID.SET_SPEED</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmotorsidstop">ROBOT.MOTORS.ID.STOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmotorsidget_speed">ROBOT.MOTORS.ID.GET_SPEED</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmotorsidget_state">ROBOT.MOTORS.ID.GET_STATE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmotorsidenable_close_loop_control">ROBOT.MOTORS.ID.ENABLE_CLOSE_LOOP_CONTROL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotmotorsidtune_pid">ROBOT.MOTORS.ID.TUNE_PID</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#funciones-relacionadas-con-la-lectura-de-sensores-del-robot">Funciones relacionadas con la lectura de sensores del robot</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#robotsensorsread_imu_theta">ROBOT.SENSORS.READ_IMU_THETA</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotsensorsread_imu_values">ROBOT.SENSORS.READ_IMU_VALUES</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotsensorsread_ultrasonic_value">ROBOT.SENSORS.READ_ULTRASONIC_VALUE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#robotsensorsread_ultrasonic_all">ROBOT.SENSORS.READ_ULTRASONIC_ALL</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#robotupdate_odometry">ROBOT.UPDATE_ODOMETRY</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#robotmotors">ROBOT.MOTORS</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -197,38 +263,234 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="clase-robot">Clase robot</h1>
-<p><code>class MobileRobot(motor_config)</code></p>
-<p>Clase base para un robot móvil con múltiples motores controlados por PID. Representa una plataforma genérica de robot móvil que permite el control de múltiples motores, integración de modelos cinemáticos personalizados (jacobianos), actualización periódica mediante temporizador y ajuste de controladores PID por motor.</p>
-<p>Nota: Admite robots de tipo diferencial y mecanum u otras arquitecturas que
-compartan el mismo esquema de control individual por rueda.</p>
-<p>Parametros:</p>
+                <h1 id="clase-robot">Clase <code>robot</code></h1>
+<p>Antes de iniciar el proyecto, es necesario definir la clase base del robot que se utilizará. Esta clase debe ser capaz de manejar diferentes configuraciones de hardware y proporcionar una interfaz común para interactuar con los motores y sensores.</p>
+<hr />
+<h2 id="paso-1-definir-la-clase-base-del-robot">PASO 1: Definir la clase base del robot</h2>
+<p>En primer lugar, es necesario importar el método <code>get_robot</code> de la librería <code>robot</code>. Este método permite obtener una instancia del robot según el tipo de robot y su configuración. Cada configuración depende del tipo de robot, por lo que se sugiere revisar la documentación de <a href="../../configure/configure/"><code>configure</code></a> para entender las diferentes configuraciones disponibles.</p>
+<p>A continuación se muestra un ejemplo de cómo definir la clase base del robot utilizando el método <code>get_robot</code> para crear una instancia del robot mecanum:</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de inicialización</p>
+<p>Este bloque de código crea una instancia del robot tipo mecanum usando la configuración definida en <code>CONFIG</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONFIG</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_robot</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">ROBOT_TYPE</span> <span class="o">=</span> <span class="s1">&#39;mecanum&#39;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">get_robot</span><span class="p">(</span><span class="n">ROBOT_TYPE</span><span class="p">,</span> <span class="n">CONFIG</span><span class="p">[</span><span class="n">ROBOT_TYPE</span><span class="p">])</span>
+</span></code></pre></div>
+</div>
+<hr />
+<h2 id="paso-2-controlar-el-robot">PASO 2: Controlar el robot</h2>
+<p>Luego de llamar a <code>get_robot</code>, se puede utilizar la instancia del robot para controlar sus motores y sensores. Por ejemplo:</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>move</code></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">vx</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<hr />
+<h2 id="metodos-asociados-a-la-clase-base-del-robot">Métodos asociados a la clase base del robot</h2>
+<h3 id="funciones-relacionadas-con-el-movimiento-del-robot">Funciones relacionadas con el movimiento del robot</h3>
+<h4 id="robotmove">ROBOT.MOVE</h4>
+<p><em><code>robot.move(vx, vy, omega)</code></em></p>
+<p>Calcula y aplica velocidades individuales a las ruedas a partir de velocidades del chasis.</p>
+<p><strong>Parámetros:</strong></p>
 <ul>
-<li><code>motor_configs : dict</code></li>
+<li><code>vx</code> (<em>float</em>): Velocidad lineal en eje X [m/s]</li>
+<li><code>vy</code> (<em>float</em>): Velocidad lineal en eje Y [m/s]</li>
+<li><code>omega</code> (<em>float</em>): Velocidad angular del chasis [rad/s]</li>
 </ul>
-<p>Lista de diccionarios con los parámetros de configuración de cada motor.
-  Cada diccionario debe incluir al menos:</p>
-<p>Metodos:</p>
+<p><strong>Ejemplo:</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>move</code></p>
+<p>Este comando permite mover el robot con una velocidad lineal de 0.5 m/s en el eje X, sin movimiento en el eje Y, y con una rotación angular de 0.1 rad/s.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">vx</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<h4 id="robotstop">ROBOT.STOP</h4>
+<p><em><code>robot.stop()</code></em></p>
+<p>Detiene el robot móvil, estableciendo todas las velocidades a cero.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>stop</code></p>
+<p>Este comando detiene completamente el movimiento del robot.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotset_custom_jacobian">ROBOT.SET_CUSTOM_JACOBIAN</h4>
+<p><em><code>robot.set_custom_jacobian(func)</code></em></p>
+<p>Define una función externa para calcular el jacobiano personalizado.</p>
+<p><strong>Parámetros:</strong></p>
 <ul>
-<li><code>move(self, vx, vy, omega)</code></li>
-<li><code>stop()</code></li>
-<li><code>enable_auto_update(self, interval=10)</code></li>
-<li><code>_update_motors()</code></li>
-<li><code>set_custom_jacobian(func)</code></li>
-<li><code>_jacobian()</code></li>
-<li><code>default_jacobian()</code></li>
-<li><code>_compute_wheel_speeds(vx, vy, omega)</code></li>
-<li><code>update_odometry()</code></li>
-<li><code>set_control_mode()</code></li>
-<li><code>set_pid_constants(motor_index, kp)</code></li>
+<li><code>func</code> (<em>callable</em>): Función que retorna una matriz jacobiana (lista de listas)</li>
 </ul>
-<p>Ejemplos:</p>
-<div class="language-text highlight"><pre><span></span><code>from config import CONFIG
-from robot.base import MobileRobot
-
-robot = MobileRobot(config)
-robot.move(vx=0.2, vy=0.0, omega=0.1)
-</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>set_custom_jacobian</code></p>
+<p>Este comando permite definir un jacobiano personalizado para el robot, útil en aplicaciones específicas.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_jacobian</span><span class="p">():</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">return</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">set_custom_jacobian</span><span class="p">(</span><span class="n">my_jacobian</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<hr />
+<h3 id="funciones-relacionadas-con-el-control-en-lazo-cerrado">Funciones relacionadas con el control en lazo cerrado</h3>
+<h4 id="robotset_control_mode">ROBOT.SET_CONTROL_MODE</h4>
+<p><em><code>robot.set_control_mode(closed_loop=False)</code></em></p>
+<p>Activa o desactiva el control en lazo cerrado (PID) en todos los motores.</p>
+<p><strong>Parámetros:</strong></p>
+<ul>
+<li><code>closed_loop</code> (<em>bool</em>): <code>True</code> para habilitar PID, <code>False</code> para desactivar</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>set_control_mode</code></p>
+<p>Este comando activa el control PID en todos los motores del robot.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">set_control_mode</span><span class="p">(</span><span class="n">closed_loop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotset_pid_constants">ROBOT.SET_PID_CONSTANTS</h4>
+<p><em><code>robot.set_pid_constants(motor_index, kp, ki=None, kd=None)</code></em></p>
+<p>Configura los parámetros PID de un motor en específico.</p>
+<p><strong>Parámetros:</strong></p>
+<ul>
+<li><code>motor_index</code> (<em>int</em>): Índice del motor en la lista <code>robot.motors</code></li>
+<li><code>kp</code> (<em>float</em>): Constante proporcional</li>
+<li><code>ki</code> (<em>float</em>): Constante integral (opcional)</li>
+<li><code>kd</code> (<em>float</em>): Constante derivativa (opcional)</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>set_pid_constants</code></p>
+<p>Este comando ajusta los parámetros PID del primer motor del robot.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">set_pid_constants</span><span class="p">(</span><span class="n">motor_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">kp</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">ki</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">kd</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotenable_auto_update">ROBOT.ENABLE_AUTO_UPDATE</h4>
+<p><em><code>robot.enable_auto_update(interval=10)</code></em></p>
+<p>Habilita la actualización periódica de los motores usando un <code>Timer</code>.</p>
+<p><strong>Parámetros:</strong></p>
+<ul>
+<li><code>interval</code> (<em>int</em>): Periodo de actualización en milisegundos (por defecto 10 ms)</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>enable_auto_update</code></p>
+<p>Este comando activa la actualización automática de los motores cada 20 ms.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">enable_auto_update</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<hr />
+<h3 id="funciones-relacionadas-con-los-motores-individuales">Funciones relacionadas con los motores individuales</h3>
+<h4 id="robotmotorsidset_speed">ROBOT.MOTORS.ID.SET_SPEED</h4>
+<p><em><code>robot.motors[id].set_speed(speed_rps)</code></em></p>
+<p>Establece la velocidad objetivo del motor en revoluciones por segundo (rps).</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>set_speed</code></p>
+<p>Este comando establece la velocidad del primer motor a 10.0 rps.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_speed</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotmotorsidstop">ROBOT.MOTORS.ID.STOP</h4>
+<p><em><code>robot.motors[id].stop()</code></em></p>
+<p>Detiene el motor individual.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>stop</code></p>
+<p>Este comando detiene el segundo motor del robot.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotmotorsidget_speed">ROBOT.MOTORS.ID.GET_SPEED</h4>
+<p><em><code>robot.motors[id].get_speed()</code></em></p>
+<p>Retorna la velocidad actual del motor.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>get_speed</code></p>
+<p>Este comando obtiene la velocidad actual del tercer motor.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">vel</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">get_speed</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotmotorsidget_state">ROBOT.MOTORS.ID.GET_STATE</h4>
+<p><em><code>robot.motors[id].get_state()</code></em></p>
+<p>Retorna un diccionario con información del estado del motor (velocidad, posición, PID, etc).</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>get_state</code></p>
+<p>Este comando imprime el estado del cuarto motor, incluyendo velocidad y posición.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">get_state</span><span class="p">())</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotmotorsidenable_close_loop_control">ROBOT.MOTORS.ID.ENABLE_CLOSE_LOOP_CONTROL</h4>
+<p><em><code>robot.motors[id].enable_close_loop_control(True)</code></em></p>
+<p>Activa el control PID para ese motor.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>enable_close_loop_control</code></p>
+<p>Este comando activa el control PID en el primer motor del robot.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">enable_close_loop_control</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotmotorsidtune_pid">ROBOT.MOTORS.ID.TUNE_PID</h4>
+<p><em><code>robot.motors[id].tune_pid(kp, ki, kd)</code></em></p>
+<p>Ajusta los parámetros PID para un motor específico.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>tune_pid</code></p>
+<p>Este comando ajusta los parámetros PID del primer motor a kp=1.0, ki=0.1, kd=0.01.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tune_pid</span><span class="p">(</span><span class="n">kp</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ki</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">kd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<hr />
+<h3 id="funciones-relacionadas-con-la-lectura-de-sensores-del-robot">Funciones relacionadas con la lectura de sensores del robot</h3>
+<h4 id="robotsensorsread_imu_theta">ROBOT.SENSORS.READ_IMU_THETA</h4>
+<p><em><code>robot.sensors.read_imu_theta()</code></em></p>
+<p>Devuelve el ángulo de orientación estimado por el IMU (en radianes).</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>read_imu_theta</code></p>
+<p>Este comando obtiene el ángulo de orientación del robot desde el IMU.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">theta</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">read_imu_theta</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotsensorsread_imu_values">ROBOT.SENSORS.READ_IMU_VALUES</h4>
+<p><em><code>robot.sensors.read_imu_values()</code></em></p>
+<p>Retorna los valores del IMU (acelerómetro y giróscopo).</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>read_imu_values</code></p>
+<p>Este comando obtiene los valores del IMU, incluyendo aceleración y velocidad angular.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">imu_data</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">read_imu_values</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotsensorsread_ultrasonic_value">ROBOT.SENSORS.READ_ULTRASONIC_VALUE</h4>
+<p><em><code>robot.sensors.read_ultrasonic_value(sensor_id)</code></em></p>
+<p>Retorna la distancia medida por un sensor ultrasónico específico.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>read_ultrasonic_value</code></p>
+<p>Este comando obtiene la distancia medida por el primer sensor ultrasónico.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">distancia</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">read_ultrasonic_value</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div></p>
+</div>
+<h4 id="robotsensorsread_ultrasonic_all">ROBOT.SENSORS.READ_ULTRASONIC_ALL</h4>
+<p><em><code>robot.sensors.read_ultrasonic_all()</code></em></p>
+<p>Retorna una lista con las mediciones de todos los sensores ultrasónicos.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>read_ultrasonic_all</code></p>
+<p>Este comando obtiene las distancias medidas por todos los sensores ultrasónicos del robot.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">distancias</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">read_ultrasonic_all</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<hr />
+<h3 id="robotupdate_odometry">ROBOT.UPDATE_ODOMETRY</h3>
+<p><em><code>robot.update_odometry()</code></em></p>
+<p>Actualiza la posición estimada del robot. Actualmente no implementado, pero reservado para fusión de datos de encoders e IMU.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de metodo <code>update_odometry</code></p>
+<p>Este comando actualiza la odometría del robot, aunque actualmente no realiza ninguna acción.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">robot</span><span class="o">.</span><span class="n">update_odometry</span><span class="p">()</span>
+</span></code></pre></div></p>
+</div>
+<hr />
+<h3 id="robotmotors">ROBOT.MOTORS</h3>
+<p><em><code>robot.motors</code></em></p>
+<p>Lista de objetos <code>MotorWithPID</code> que representan cada una de las ruedas del robot.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo de uso de la lista <code>robot.motors</code></p>
+<p>Este comando itera sobre cada motor del robot e imprime su estado actual.
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">motors</span><span class="p">:</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">motor</span><span class="o">.</span><span class="n">get_state</span><span class="p">())</span>
+</span></code></pre></div></p>
+</div>
+<hr />
               
             </div>
           </div><footer>
