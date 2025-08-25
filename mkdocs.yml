@@ -39,8 +39,8 @@ nav:
     - 'Configuración y calibración de motores': 'configure/motor_config_guide.md'
   - 'Robot': 
     - 'Robot': 'robot/robot.md'
-  - 'Spring documentos':
-    # - 'Spring 2024': 'spring2024/spring2024.md'
+  # - 'Spring documentos':
+  #   # - 'Spring 2024': 'spring2024/spring2024.md'
   # - 'Sensores':
   #   - 'sensor': 'sensors/sensor.md'
   #   - 'ultrasonido': 'sensors/ultrasonico.md'
