@@ -15,7 +15,7 @@ Ya tenemos Thonny funcionando y la Pico W con el firmware instalado. Ahora carga
 Hemos preparado un paquete que contiene todos los archivos y carpetas necesarias para que tu robot funcione correctamente.
 
 1. Descarga el archivo `.zip` desde el siguiente enlace:  
-<a href="../firmware/Software_Pico-2025-2_V2.zip" download>
+<a href="docs\firmware\Software_Pico-2025-2_V2.zip" download>
   📦 <strong>Descargar archivos base del robot</strong>
 </a>
 

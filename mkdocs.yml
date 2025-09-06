@@ -4,7 +4,7 @@ site_name: Software Pico - 1MTR53
 site_author: Equipo 1MTR53
 
 
-repo_url: https://github.com/PUCP-Robotica-IA/Software_Pico 
+repo_url: https://github.com/PUCP-Robotica-IA/robotic-kit-docs
 repo_name: Ver en GitHub
 edit_uri: edit/main/docs/ 
 
