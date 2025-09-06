@@ -6,7 +6,8 @@ site_author: Equipo 1MTR53
 
 repo_url: https://github.com/PUCP-Robotica-IA/robotic-kit-docs
 repo_name: Ver en GitHub
-edit_uri: edit/main/docs/ 
+edit_uri: ""
+
 
 
 theme:
@@ -24,10 +25,7 @@ theme:
     - yaml
     - markdown
 
-  features:
-    - content.code.copy
-    - content.code.select
-
+ 
 nav:
   - 'Introducción': 'index.md'
   - 'Guía de instalación':

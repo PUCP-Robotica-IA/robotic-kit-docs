@@ -185,5 +185,5 @@ Para solicitudes de uso externo, contactar con el equipo docente o coordinador d
 Para dudas, soporte o sugerencias:
 
 - **Coordinador técnico:** [dequiroz@pucp.edu.pe] 
-- **Repositorio oficial:** <https://github.com/PUCP-Robotica-IA/Software_Pico>
+- **Repositorio oficial:** <https://github.com/PUCP-Robotica-IA/robotic-kit-docs>
 
